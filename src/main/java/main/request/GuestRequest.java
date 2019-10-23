@@ -1,18 +1,21 @@
 package main.request;
 
+import java.util.List;
+
 public class GuestRequest {
 
-    private int id;
+    private Integer id;
     private String name;
-    private int aadhar;
-    private String email_id;
+    private Integer aadhar;
+    private String emailId;
     private String address;
+    private List<ReservationRequest> reservationRequest;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -24,20 +27,20 @@ public class GuestRequest {
         this.name = name;
     }
 
-    public int getAadhar() {
+    public Integer getAadhar() {
         return aadhar;
     }
 
-    public void setAadhar(int aadhar) {
+    public void setAadhar(Integer aadhar) {
         this.aadhar = aadhar;
     }
 
-    public String getEmail_id() {
-        return email_id;
+    public String getEmailId() {
+        return emailId;
     }
 
-    public void setEmail_id(String email_id) {
-        this.email_id = email_id;
+    public void setEmailId(String emailId) {
+        this.emailId = emailId;
     }
 
     public String getAddress() {
@@ -46,5 +49,13 @@ public class GuestRequest {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public List<ReservationRequest> getReservationRequest() {
+        return reservationRequest;
+    }
+
+    public void setReservationRequest(List<ReservationRequest> reservationRequest) {
+        this.reservationRequest = reservationRequest;
     }
 }

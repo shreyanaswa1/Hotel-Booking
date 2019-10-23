@@ -1,16 +1,20 @@
 package main.request;
 
-public class HotelRequest {
-    private int id;
-    private String name;
-    private int phone;
-    private String address;
+import java.util.List;
+import main.request.RoomRequest;
 
-    public int getId() {
+public class HotelRequest {
+    private Integer id;
+    private String name;
+    private Integer phone;
+    private String address;
+    private List<RoomRequest> roomRequest;
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -22,11 +26,11 @@ public class HotelRequest {
         this.name = name;
     }
 
-    public int getPhone() {
+    public Integer getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(Integer phone) {
         this.phone = phone;
     }
 
@@ -36,5 +40,13 @@ public class HotelRequest {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public List<RoomRequest> getRoomRequest() {
+        return roomRequest;
+    }
+
+    public void setRoomRequest(List<RoomRequest> roomRequest) {
+        this.roomRequest = roomRequest;
     }
 }

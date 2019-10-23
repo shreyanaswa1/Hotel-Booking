@@ -1,12 +1,23 @@
-package main.request;
+package main.entity;
 
-import main.entity.Hotel;
+import javax.persistence.*;
 
-public class RoomRequest {
+@Entity
+@Table(name="room")
+public class Room {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column
     private String type;
+    @Column
     private Integer count;
+    @Column
     private Integer rate;
+
+    @ManyToOne
+    @JoinColumn(referencedColumnName = "id", name="hotel_id")
     private Hotel hotels;
 
     public Hotel getHotels() {

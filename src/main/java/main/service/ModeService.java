@@ -1,6 +1,6 @@
 package main.service;
 
-import main.entity.mode;
+import main.entity.Mode;
 import main.repository.ModeRepository;
 import main.request.ModeRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,17 +8,18 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ModeService {
 
     @Autowired
-    ModeRepository modeRepository;
+    private ModeRepository modeRepository;
 
     public List<ModeRequest> findAll(){
-        List<mode> modeList = modeRepository.findAll();
+        List<Mode> modeList = modeRepository.findAll();
         List<ModeRequest> modeRequests = new ArrayList<ModeRequest>();
-        for(mode modes: modeList){
+        for(Mode modes: modeList){
             ModeRequest modeRequest = new ModeRequest();
             modeRequest.setId(modes.getId());
             modeRequest.setType(modes.getType());
@@ -28,11 +29,19 @@ public class ModeService {
 
     }
     public ModeRequest findbyId(int id){
-        mode modes = modeRepository.findOne(id);
+        Optional<Mode> modes  = modeRepository.findById(id);
         ModeRequest modeRequest = new ModeRequest();
-        modeRequest.setId(modes.getId());
-        modeRequest.setType(modes.getType());
-
+        if(modes.isPresent()){
+            modeRequest.setId(modes.get().getId());
+            modeRequest.setType(modes.get().getType());
+        }
         return modeRequest;
+    }
+    public String create(ModeRequest modeRequest) {
+        Mode mode = new Mode();
+        mode.setId(modeRequest.getId());
+        mode.setType(modeRequest.getType());
+        modeRepository.save(mode);
+        return "Success";
     }
 }

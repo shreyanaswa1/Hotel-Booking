@@ -1,7 +1,10 @@
 package main.repository;
 
-import main.entity.reservation;
+import main.entity.Reservation;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface ReservationRepository extends JpaRepository<reservation,Integer> {
+@Repository
+public interface ReservationRepository extends JpaRepository<Reservation,Integer> {
+
 }

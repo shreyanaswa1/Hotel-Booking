@@ -3,15 +3,12 @@ package main.controller;
 import main.request.ReservationRequest;
 import main.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/reservations")
+@RequestMapping("/reservation")
 public class ReservationController {
 
     @Autowired
@@ -22,9 +19,14 @@ public class ReservationController {
     public List<ReservationRequest> findAll() {
         return reservationService.findAll();
     }
+
     @GetMapping("/{id}")
-    public ReservationRequest findOne(@PathVariable("id") int id)
-    {
+    public ReservationRequest findById(@PathVariable("id") int id) {
         return reservationService.findbyId(id);
     }
+    @PostMapping
+    public String create(ReservationRequest reservationRequest){
+        return reservationService.create(reservationRequest);
+    }
+
 }

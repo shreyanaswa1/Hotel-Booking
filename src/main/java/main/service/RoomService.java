@@ -1,6 +1,6 @@
 package main.service;
 
-import main.entity.room;
+import main.entity.Room;
 import main.repository.RoomRepository;
 import main.request.RoomRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,16 +8,17 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RoomService {
     @Autowired
-    RoomRepository roomRepository;
+    private RoomRepository roomRepository;
 
     public List<RoomRequest> findAll(){
-        List<room> roomList = roomRepository.findAll();
+        List<Room> roomList = roomRepository.findAll();
         List<RoomRequest> roomRequests = new ArrayList<RoomRequest>();
-        for(room rooms: roomList){
+        for(Room rooms: roomList){
             RoomRequest roomRequest = new RoomRequest();
             roomRequest.setId(rooms.getId());
             roomRequest.setType(rooms.getType());
@@ -29,12 +30,15 @@ public class RoomService {
 
     }
     public RoomRequest findbyId(int id){
-        room rooms = roomRepository.findOne(id);
+        Optional<Room> rooms = roomRepository.findById(id);
         RoomRequest roomRequest = new RoomRequest();
-        roomRequest.setId(rooms.getId());
-        roomRequest.setType(rooms.getType());
-        roomRequest.setCount(rooms.getCount());
-        roomRequest.setRate(rooms.getRate());
+        if(rooms.isPresent()){
+            roomRequest.setId(rooms.get().getId());
+            roomRequest.setType(rooms.get().getType());
+            roomRequest.setCount(rooms.get().getCount());
+            roomRequest.setRate(rooms.get().getRate());
+        }
+
         return roomRequest;
     }
 
