@@ -17,7 +17,7 @@ public class Room {
     private Integer rate;
 
     @ManyToOne
-    @JoinColumn(referencedColumnName = "id", name="hotel_id")
+    @JoinColumn(name="hotel_id")
     private Hotel hotels;
 
     public Hotel getHotels() {
