@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin(origins="*", maxAge=3600)
 @RestController
 @RequestMapping("/hotel")
 public class HotelController {
@@ -33,10 +33,10 @@ public class HotelController {
         return hotelService.findDetails(id);
     }
 
-//    @PostMapping
-//    public String create(@RequestBody HotelRequest hotelRequest){
-//        return hotelService.create(hotelRequest);
-//    }
+    @PostMapping
+    public String create(@RequestBody HotelRequest hotelRequest){
+        return hotelService.create(hotelRequest);
+    }
 
      @GetMapping("{id}/rooms")
      public List<Room> find(@PathVariable("id")int id)

@@ -6,6 +6,8 @@ import main.request.GuestRequest;
 import main.repository.GuestRepository;
 import main.request.ReservationRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -84,7 +86,7 @@ public class GuestService {
     }
 
 
-    public String create(GuestRequest guestRequest) {
+    public ResponseEntity<String> create(GuestRequest guestRequest) {
         Guest guest = new Guest();
         guest.setId(guestRequest.getId());
         guest.setName(guestRequest.getName());
@@ -92,7 +94,7 @@ public class GuestService {
         guest.setEmailId(guestRequest.getEmailId());
         guest.setAddress(guestRequest.getAddress());
         repository.save(guest);
-        return "Success";
+        return new ResponseEntity<>("CREATED", HttpStatus.CREATED);
     }
 
 

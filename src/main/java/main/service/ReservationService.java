@@ -47,13 +47,13 @@ public class ReservationService {
         return reservationRequest;
     }
 
-    public String create(ReservationRequest reservationRequest){
-        Reservation reservation = new Reservation();
-        reservation.setId(reservationRequest.getId());
-        reservation.setAmount(reservationRequest.getAmount());
-        reservation.setTotalRooms(reservationRequest.getTotal_rooms());
-        reservation.setStartDate(reservationRequest.getStartDate());
-        reservation.setEndDate(reservationRequest.getEndDate());
-        return "Success";
-    }
+//    public String create(ReservationRequest reservationRequest){
+//        Reservation reservation = new Reservation();
+//        reservation.setId(reservationRequest.getId());
+//        reservation.setAmount(reservationRequest.getAmount());
+//        reservation.setTotalRooms(reservationRequest.getTotal_rooms());
+//        reservation.setStartDate(reservationRequest.getStartDate());
+//        reservation.setEndDate(reservationRequest.getEndDate());
+//        return "Success";
+//    }
 }

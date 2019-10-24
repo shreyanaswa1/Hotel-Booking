@@ -24,9 +24,10 @@ public class ReservationController {
     public ReservationRequest findById(@PathVariable("id") int id) {
         return reservationService.findbyId(id);
     }
-    @PostMapping
-    public String create(ReservationRequest reservationRequest){
-        return reservationService.create(reservationRequest);
-    }
+
+//    @PostMapping
+//    public String create(ReservationRequest reservationRequest){
+//        return reservationService.create(reservationRequest);
+//    }
 
 }

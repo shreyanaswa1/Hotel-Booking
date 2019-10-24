@@ -87,39 +87,45 @@ public class HotelService {
 
     public HotelRequest findDetails(int id){
         Hotel hotels = hotelRepository.findById(id).get();
-        HotelRequest hotelRequest = getHotelRequest(hotels);
-        return hotelRequest;
+
+            HotelRequest hotelRequest = getHotelRequest(hotels);
+            return hotelRequest;
+
+
+
 
     }
 
-//    public String create(@RequestBody HotelRequest hotelRequest){
-//        Hotel hotel=new Hotel();
-//        hotel.setId(hotelRequest.getId());
-//        hotel.setName(hotelRequest.getName());
-//        hotel.setPhone(hotelRequest.getPhone());
-//        hotel.setAddress(hotelRequest.getAddress());
-//
-//       // System.out.println(hotelRequest);
-//       // if(hotelRequest.getRoomRequest()!=null){
-//        List<Room> roomRequests=new ArrayList<>();
-//            for(RoomRequest roomRequest:hotelRequest.getRoomRequest()){
-//
-//                Room room = new Room();
-//                room.setId(roomRequest.getId());
-//                room.setType(roomRequest.getType());
-//                room.setCount(roomRequest.getCount());
-//                room.setRate(roomRequest.getRate());
-//             //   hotel.setRoomList();
-//              roomRequests.add(room);
-//                //roomRequests.a
-//                roomRepository.save(room);
-//
-//            }
-//            hotel.setRoomList(roomRequests);
-//             hotelRepository.save(hotel);
-//       // }
-//
-//        return "Success";
-//    }
-    }
+     public String create(@RequestBody HotelRequest hotelRequest) {
+         Hotel hotel = new Hotel();
+         hotel.setId(hotelRequest.getId());
+         hotel.setName(hotelRequest.getName());
+         hotel.setPhone(hotelRequest.getPhone());
+         hotel.setAddress(hotelRequest.getAddress());
+         hotelRepository.save(hotel);
+
+         // System.out.println(hotelRequest);
+         if (hotelRequest.getRoomRequest() != null) {
+             List<Room> roomRequests = new ArrayList<>();
+             for (RoomRequest roomRequest : hotelRequest.getRoomRequest()) {
+
+                 Room room = new Room();
+                 room.setId(roomRequest.getId());
+                 room.setType(roomRequest.getType());
+                 room.setCount(roomRequest.getCount());
+                 room.setRate(roomRequest.getRate());
+                 roomRequests.add(room);
+                 room.setHotels(hotel);
+                 //   hotel.setRoomList();
+
+                 roomRepository.save(room);
+             }
+             hotel.setRoomList(roomRequests);
+
+             }
+
+             return "Success";
+         }
+
+     }
 

@@ -4,6 +4,8 @@ import main.entity.Room;
 import main.repository.RoomRepository;
 import main.request.RoomRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -38,8 +40,16 @@ public class RoomService {
             roomRequest.setCount(rooms.get().getCount());
             roomRequest.setRate(rooms.get().getRate());
         }
-
         return roomRequest;
     }
+
+//    public String create(RoomRequest roomRequest){
+//        Room room = new Room();
+//        room.setId(roomRequest.getId());
+//        room.setType(roomRequest.getType());
+//        room.setCount(roomRequest.getCount());
+//        room.setRate(roomRequest.getRate());
+//        return "Success";
+//    }
 
 }
