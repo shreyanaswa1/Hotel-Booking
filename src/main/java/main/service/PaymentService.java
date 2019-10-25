@@ -3,6 +3,7 @@ package main.service;
 import main.entity.Payment;
 import main.entity.Reservation;
 import main.repository.PaymentRepository;
+import main.repository.ReservationRepository;
 import main.request.PaymentRequest;
 import main.request.ReservationRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,9 @@ import java.util.Optional;
 public class PaymentService {
     @Autowired
     private PaymentRepository paymentRepository;
+
+    @Autowired
+    private ReservationRepository reservationRepository;
 
     public List<PaymentRequest> findAll(){
         List<Payment> paymentList = paymentRepository.findAll();
@@ -46,7 +50,7 @@ public class PaymentService {
 
         ReservationRequest reservationRequest = new ReservationRequest();
         reservationRequest.setId(reservation.getId());
-        reservationRequest.setTotal_rooms(reservation.getTotalRooms());
+        reservationRequest.setTotalRooms(reservation.getTotalRooms());
         reservationRequest.setAmount(reservation.getAmount());
         reservationRequest.setStartDate(reservation.getStartDate());
         reservationRequest.setEndDate(reservation.getEndDate());
@@ -73,7 +77,7 @@ public class PaymentService {
         payment.setAmount(paymentRequest.getAmount());
         payment.setDate(paymentRequest.getDate());
         paymentRepository.save(payment);
-
+//        Reservation reservation = reservationRepository.findById(paymentRequest.getReservationId()).get();
         return "Success";
     }
 }

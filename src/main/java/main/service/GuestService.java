@@ -25,7 +25,7 @@ public class GuestService {
     {
         ReservationRequest reservationRequest=new ReservationRequest();
         reservationRequest.setId(reservation.getId());
-        reservationRequest.setTotal_rooms(reservation.getTotalRooms());
+        reservationRequest.setTotalRooms(reservation.getTotalRooms());
         reservationRequest.setAmount(reservation.getAmount());
         reservationRequest.setStartDate(reservation.getStartDate());
         reservationRequest.setEndDate(reservation.getEndDate());

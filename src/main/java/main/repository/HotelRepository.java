@@ -15,11 +15,8 @@ public interface HotelRepository extends JpaRepository<Hotel, Integer> {
 //        @Query("SELECT r from hotel h join room r on r.hotel_id=h.id")
 //        List<Room> getRoomList(@Param("id")Integer id);
 
-    @Query("SELECT r from Hotel h join h.roomList r")
-    List<Room> getRoomList(@Param("Hotel") Hotel hotel);
-
-////    @Query(
-////            value="Select h FROM hotel INNER JOIN room ON hotel.id=room.hotel_id",nativeQuery = true)
+    @Query("SELECT r from Hotel h join h.roomList r where r.hotels=:hotel")
+    List<Room> getRoomList(@Param("hotel") Hotel hotel);
 
 
 }

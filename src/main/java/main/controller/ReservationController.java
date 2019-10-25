@@ -1,5 +1,6 @@
 package main.controller;
 
+import main.request.HotelRequest;
 import main.request.ReservationRequest;
 import main.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +26,13 @@ public class ReservationController {
         return reservationService.findbyId(id);
     }
 
-//    @PostMapping
-//    public String create(ReservationRequest reservationRequest){
-//        return reservationService.create(reservationRequest);
-//    }
+    @PostMapping
+    public String create(@RequestBody ReservationRequest reservationRequest){
+        return reservationService.create(reservationRequest);
+    }
 
+    @PutMapping("/{id}")
+    public String update(@PathVariable("id") int id, @RequestBody ReservationRequest reservationRequest){
+        return reservationService.update(id,reservationRequest );
+    }
 }

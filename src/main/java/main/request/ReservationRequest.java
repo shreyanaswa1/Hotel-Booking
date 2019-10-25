@@ -1,5 +1,6 @@
 package main.request;
 
+import main.entity.Guest;
 import main.entity.Payment;
 
 import java.util.Date;
@@ -9,8 +10,29 @@ public class ReservationRequest {
     private Date startDate;
     private Date endDate;
     private Integer amount;
-    private Integer total_rooms;
-//    private Payment payment;
+    private Integer totalRooms;
+    private Integer guestId;
+    private Integer roomId;
+
+    public Integer getRoomId() {
+        return roomId;
+    }
+
+    public void setRoomId(Integer roomId) {
+        this.roomId = roomId;
+    }
+
+    public Integer getGuestId() {
+        return guestId;
+    }
+
+    public void setGuestId(Integer guestId) {
+        this.guestId = guestId;
+    }
+
+
+
+    //    private Payment payment;
 
     public Integer getId() {
         return id;
@@ -44,12 +66,12 @@ public class ReservationRequest {
         this.amount = amount;
     }
 
-    public Integer getTotal_rooms() {
-        return total_rooms;
+    public Integer getTotalRooms() {
+        return totalRooms;
     }
 
-    public void setTotal_rooms(Integer total_rooms) {
-        this.total_rooms = total_rooms;
+    public void setTotalRooms(Integer total_rooms) {
+        this.totalRooms = total_rooms;
     }
 
 //    public Payment getPayment() {

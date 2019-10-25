@@ -6,6 +6,7 @@ import main.request.HotelRequest;
 import main.request.RoomRequest;
 import main.service.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,17 +34,23 @@ public class HotelController {
         return hotelService.findDetails(id);
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     public String create(@RequestBody HotelRequest hotelRequest){
         return hotelService.create(hotelRequest);
     }
 
      @GetMapping("{id}/rooms")
-     public List<Room> find(@PathVariable("id")int id)
+     public HotelRequest find(@PathVariable("id")int id)
      {
 //         Hotel hotel=hotelService.findbyId(id);
          return hotelService.findRoom(id);
      }
+
+    @PutMapping(path = {"/{id}"})
+    public String update(@PathVariable("id") int id, @RequestBody HotelRequest hotelRequest){
+        return hotelService.update(id,hotelRequest);
+    }
 
 //     @GetMapping("/{id}/room")
 //    public List<Room> findbyId()

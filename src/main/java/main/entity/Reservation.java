@@ -9,22 +9,38 @@ public class Reservation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(unique = true,nullable = false)
     private Integer id;
-    @Column
+
+    @Column(name="total_rooms")
     private Integer totalRooms;
-    @Column
+    @Column(name="start_date")
     private Date startDate;
-    @Column
+    @Column(name="end_date")
     private Date endDate;
-    @Column
+    @Column(name="amount")
     private Integer amount;
 
 //    @OneToOne(mappedBy = "reservation")
 //    private Payment payment;
 
     @ManyToOne
-    @JoinColumn(referencedColumnName = "id", name="guest_id")
+    @JoinColumn(name="guest_id")
     private Guest guests;
+
+    @ManyToOne
+    @JoinColumn(name="room_id")
+    private  Room room;
+
+    public Room getRoom() {
+        return room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
+    }
+
+
 
     public Guest getGuests() {
         return guests;

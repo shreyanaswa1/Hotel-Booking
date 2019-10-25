@@ -9,6 +9,7 @@ public class PaymentRequest {
     private Integer id;
     private Integer amount;
     private Date date;
+    private Integer reservationId;
     private ReservationRequest reservationRequest;
 
     public ReservationRequest getReservationRequest() {
@@ -18,6 +19,14 @@ public class PaymentRequest {
     public void setReservationRequest(ReservationRequest reservationRequest) {
         this.reservationRequest = reservationRequest;
     }
+
+//    public Integer getReservationId() {
+//        return reservationId;
+//    }
+//
+//    public void setReservationId(Integer reservationId) {
+//        this.reservationId = reservationId;
+//    }
 
     public Integer getId() {
         return id;

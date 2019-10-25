@@ -1,5 +1,6 @@
 package main.controller;
 
+import main.request.HotelRequest;
 import main.request.RoomRequest;
 import main.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,11 +26,12 @@ public class RoomController {
         return roomService.findbyId(id);
     }
 
-//    @PostMapping
-//    public ResponseEntity<String> create(@RequestBody RoomRequest roomRequest)
-//    {
-//
-//        return roomService.create(roomRequest);
-//    }
+    @PostMapping("/{id}")
+    public String create(@RequestBody HotelRequest hotelRequest,@PathVariable("id") int id)
+
+   {
+
+        return roomService.create(hotelRequest,id);
+    }
 
 }

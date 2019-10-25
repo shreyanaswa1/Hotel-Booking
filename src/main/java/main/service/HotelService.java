@@ -7,6 +7,7 @@ import main.repository.RoomRepository;
 import main.request.HotelRequest;
 import main.request.RoomRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -66,9 +67,26 @@ public class HotelService {
         return hotelRequests;
 
     }
-        public List<Room> findRoom(int id){
+        public HotelRequest findRoom(int id){
              Hotel hotel=hotelRepository.findById(id).get();
-            return hotelRepository.getRoomList(hotel);
+             HotelRequest hotelRequest=new HotelRequest();
+             hotelRequest.setId(hotel.getId());
+             hotelRequest.setName(hotel.getName());
+             hotelRequest.setPhone(hotel.getPhone());
+             hotelRequest.setAddress(hotel.getAddress());
+             List<Room> listOfRooms=hotelRepository.getRoomList(hotel);
+             List<RoomRequest> listofRoomReponse=new ArrayList<>();
+            for (Room room:listOfRooms) {
+                RoomRequest roomRequest=new RoomRequest();
+                roomRequest.setType(room.getType());
+                roomRequest.setCount(room.getCount());
+                roomRequest.setId(room.getId());
+                roomRequest.setRate(room.getRate());
+                listofRoomReponse.add(roomRequest);
+            }
+
+            hotelRequest.setRoomRequest(listofRoomReponse);
+            return hotelRequest;
         }
 
 
@@ -126,6 +144,19 @@ public class HotelService {
 
              return "Success";
          }
+
+    public String update(int id, HotelRequest hotelRequest) {
+
+        Hotel hotel = hotelRepository.findById(id).get();
+            hotel.setName(hotelRequest.getName());
+            hotel.setPhone(hotelRequest.getPhone());
+            hotel.setAddress(hotelRequest.getAddress());
+            hotelRepository.save(hotel);
+
+        return "Details Updated";
+    }
+
+
 
      }
 
